@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react"
 import { Button } from "components/ui/button"
 import { Coffee, Home, ShoppingBag, MapPin } from "lucide-react"
 
@@ -9,8 +10,10 @@ export function SideMenu() {
         Guides
       </Button>
       <Button variant="ghost" className="w-full justify-start">
+      <Link to="/products">
         <Coffee className="mr-2 h-4 w-4" />
         Coffee
+        </Link>
       </Button>
       <Button variant="ghost" className="w-full justify-start">
         <ShoppingBag className="mr-2 h-4 w-4" />
