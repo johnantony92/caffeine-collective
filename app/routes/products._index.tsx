@@ -23,9 +23,9 @@ export const loader: LoaderFunction = async ({ request }) => {
   const mockProducts: Product[] = Array.from({ length: 50 }, (_, i) => ({
     id: `product-${i + 1}`,
     name: `Coffee Blend ${i + 1}`,
-    imageUrl: `/api/placeholder/400/300`,
+    imageUrl: ``,
     rating: Math.floor(Math.random() * 5) + 1,
-    tags: ['beginner-friendly', 'medium-roast'],
+    tags: ['beginner-friendly', 'seriously-black'],
     price: 14.99,
     description: "A delightful coffee blend perfect for any time of day.",
     reviews: []

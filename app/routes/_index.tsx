@@ -10,8 +10,8 @@ import {
   AccordionTrigger,
 } from "components/ui/accordion"
 import { Users, Menu } from "lucide-react"
-import { Logo } from "~/components/logo"
-import { SideMenu } from "~/components/sidemenu"
+import { Logo } from "~/components/layout/logo"
+import { SideMenu } from "~/components/layout/sidemenu"
 import { PostCard } from "~/components/postcard"
 
 
@@ -24,35 +24,6 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* Side Menu (Desktop) */}
-      <aside className="hidden md:flex w-64 flex-col border-r">
-        <div className="p-6 border-b">
-          <Logo />
-        </div>
-        <div className="p-6">
-          <SideMenu />
-        </div>
-      </aside>
-
-      {/* Side Menu (Mobile) */}
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden fixed top-4 left-4 z-40">
-            <Menu className="h-4 w-4" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-64 p-0">
-          <SheetHeader className="p-6 border-b">
-            <Logo />
-          </SheetHeader>
-          <div className="p-6">
-            <SideMenu />
-          </div>
-        </SheetContent>
-      </Sheet>
-
-      {/* Main Content and Right Sidebar */}
       <div className="flex-1 flex flex-col lg:flex-row">
         {/* Main Content */}
         <main className="flex-1 p-6 max-w-3xl mx-auto">
@@ -137,6 +108,5 @@ export default function Index() {
           </Card>
         </aside>
       </div>
-    </div>
   )
 }
