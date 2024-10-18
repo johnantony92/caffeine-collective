@@ -1,19 +1,32 @@
-// app/components/layout.tsx
 import { SideMenu } from "~/components/layout/sidemenu";
 import { Navbar } from "~/components/layout/navbar";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "components/ui/sheet";
 import { Button } from "components/ui/button";
 import { Menu } from "lucide-react";
+import { UserDetails } from "~/types/user";
+import { TypedSupabaseClient } from "~/utils/supabase";
 
-interface LayoutProps {
+interface AppLayoutProps {
   children: React.ReactNode;
+  isAuthenticated: boolean;
+  userDetails: UserDetails;
+  supabase: TypedSupabaseClient; // Replace 'any' with your Supabase client type
 }
 
-export function Layout({ children }: LayoutProps) {
+export function AppLayout({ children, isAuthenticated, userDetails, supabase }: AppLayoutProps) {
+ 
+  
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
-      
+      <Navbar
+        isAuthenticated={isAuthenticated}
+        userDetails={userDetails}
+        supabase={supabase}
+      />
+
+
+
       <div className="flex flex-1">
         {/* Side Menu (Desktop) */}
         <aside className="hidden md:flex w-64 flex-col border-r">
@@ -42,6 +55,8 @@ export function Layout({ children }: LayoutProps) {
 
         {/* Main Content */}
         <main className="flex-1">
+   
+
           {children}
         </main>
       </div>

@@ -10,15 +10,13 @@ import {
   AccordionTrigger,
 } from "components/ui/accordion"
 import { Users, Menu } from "lucide-react"
-import { Logo } from "~/components/layout/logo"
-import { SideMenu } from "~/components/layout/sidemenu"
 import { PostCard } from "~/components/postcard"
 
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Coffee Lovers" },
-    { name: "description", content: "Welcome to Coffee Lovers!" },
+    { title: "Caffeine Collective" },
+    { name: "description", content: "Home for Coffee Enthusisasts!" },
   ]
 }
 
