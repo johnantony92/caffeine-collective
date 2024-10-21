@@ -1,4 +1,5 @@
 import { createServerClient, parseCookieHeader, serializeCookieHeader } from "@supabase/ssr";
+import { Database } from "~/types/database.types";
 
 export const getSupabaseEnv = () => ({
   SUPABASE_URL: process.env.SUPABASE_URL!,
@@ -8,7 +9,7 @@ export const getSupabaseEnv = () => ({
 export function getSupabaseWithHeaders({ request }: { request: Request }) {
   const headers = new Headers();
 
-  const supabase = createServerClient(getSupabaseEnv().SUPABASE_URL, getSupabaseEnv().SUPABASE_ANON_KEY, {
+  const supabase = createServerClient<Database>(getSupabaseEnv().SUPABASE_URL, getSupabaseEnv().SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
         return parseCookieHeader(request.headers.get('Cookie') ?? '');

@@ -20,6 +20,11 @@ export function Navbar({ isAuthenticated, userDetails, supabase }: NavbarProps) 
     await supabase.auth.signOut();
   };
 
+  const getInitials = (name: string) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase()
+  }
+
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -28,29 +33,21 @@ export function Navbar({ isAuthenticated, userDetails, supabase }: NavbarProps) 
       
 
           {isAuthenticated? (
-               <DropdownMenu>
-               <DropdownMenuTrigger asChild>
-                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                   <Avatar className="h-8 w-8">
-                     <AvatarImage src={userDetails?.userAvatarUrl||undefined} alt={userDetails.username || 'User avatar'} />
-                     <AvatarFallback>{userDetails.username || 'U'}</AvatarFallback>
-                   </Avatar>
-                 </Button>
-               </DropdownMenuTrigger>
-               <DropdownMenuContent align="end">
-               <DropdownMenuItem asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    onClick={handleSignOut}
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Log out
-                  </Button>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-             </DropdownMenu>
-          ) : (
+        <>
+          <span className="text-sm font-medium">@{userDetails.username}</span>
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={userDetails?.userAvatarUrl||undefined} alt={`${userDetails.username}'s avatar`} />
+            <AvatarFallback>{getInitials(userDetails?.username||"")}</AvatarFallback>
+          </Avatar>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={handleSignOut}
+          >
+            Logout
+          </Button>
+        </>
+      ) : (
             <>
             
               <Button asChild>

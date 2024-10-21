@@ -21,7 +21,7 @@ export function SideMenu() {
         <ShoppingBag className="mr-2 h-4 w-4" />
         Products
       </Button>
-      <Link to="/cafehome">
+      <Link to="cafes/locations">
       <Button variant="ghost" className="w-full justify-start">
         <MapPin className="mr-2 h-4 w-4" />
         Cafes
