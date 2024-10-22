@@ -3,7 +3,7 @@ export interface Cafe {
     location: string;
     favoriteorder: string;
     description: string;
-    googleLink: string;
+    googlelink: string;
     imageUrl: string;
   }
 

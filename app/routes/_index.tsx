@@ -58,8 +58,9 @@ export default function Index() {
             <CardHeader>
               <CardTitle>Upcoming Meetups</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
+            <CardContent className="flex-grow flex items-center justify-center">
+            Coming Soon.
+            {/*   <ul className="space-y-2">
                 <li className="flex items-center space-x-2">
                   <Users size={16} />
                   <span>Coffee Tasting Workshop - July 15</span>
@@ -68,7 +69,7 @@ export default function Index() {
                   <Users size={16} />
                   <span>Latte Art Competition - July 22</span>
                 </li>
-              </ul>
+              </ul> */}
             </CardContent>
             <CardFooter>
               <Button variant="outline" className="w-full">View All Meetups</Button>
@@ -78,7 +79,11 @@ export default function Index() {
             <CardHeader>
               <CardTitle>Top Reddit Discussions</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow flex items-center justify-center">
+              Coming Soon.
+            </CardContent>
+
+           {/*  <CardContent>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>1. Best budget espresso machines?</AccordionTrigger>
@@ -99,9 +104,9 @@ export default function Index() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-            </CardContent>
+            </CardContent> */}
             <CardFooter>
-              <Button variant="outline" className="w-full">Visit r/Coffee</Button>
+              <Button variant="outline" className="w-full">Visit r/IndianCoffee</Button>
             </CardFooter>
           </Card>
         </aside>

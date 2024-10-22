@@ -44,8 +44,7 @@ export default function CafeLocationPage() {
   const { data: cafes } = useLoaderData<LoaderData>();
   const params = useParams();
 
-  console.log("Cafes data:", cafes);
-  console.log("URL params:", params);
+
 
   if (!cafes || cafes.length === 0) {
     return (
@@ -90,8 +89,8 @@ export default function CafeLocationPage() {
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 {cafe.name}
-                <Badge variant="outline">{cafe.location}</Badge>
-              </CardTitle>
+{/*                 <Badge variant="outline">{params.locationname}</Badge>
+ */}              </CardTitle>
             </CardHeader>
             <CardContent className="flex-grow">
             <div className="flex items-center mb-2">
@@ -102,9 +101,9 @@ export default function CafeLocationPage() {
             <p className="text-muted-foreground mb-4">{cafe.description}</p>
           </CardContent>
             <CardFooter>
-              {cafe.googleLink && (
+              {cafe.googlelink && (
                 <a
-                  href={cafe.googleLink}
+                  href={cafe.googlelink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-primary hover:underline"
