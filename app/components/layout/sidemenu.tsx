@@ -5,12 +5,12 @@ import { Coffee, Home, ShoppingBag, MapPin, BookOpen, Book, Flame, List } from "
 export function SideMenu() {
   return (
     <nav className="space-y-2">
-      <Link to="/posts">
+{/*       <Link to="/posts">
       <Button variant="ghost" className="w-full justify-start">
         <BookOpen className="mr-2 h-4 w-4" />
         Posts
       </Button>
-      </Link>
+      </Link> */}
       <Link to="/products">
       <Button variant="ghost" className="w-full justify-start">
         <Coffee className="mr-2 h-4 w-4" />
@@ -26,7 +26,7 @@ export function SideMenu() {
       <Link to="/coming-soon">
       <Button variant="ghost" className="w-full justify-start">
       <Flame className="mr-2 h-4 w-4" />
-        What's Hot
+        Trending
       </Button>
       </Link>
       <Link to="cafes/locations">

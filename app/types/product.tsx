@@ -11,13 +11,17 @@ export interface ProductReview {
 export interface Product {
   id: string;
   name: string;
-  imageUrl: string;
-  rating: number;
-  tags: ProductTag[];
+  imageurl: string;
+  averagerating: number;
+  profile:string
+  brandid:number;
+  brandname:string;
+  tags?: ProductTag[];
   price: number;
-  description: string;
-  reviews: ProductReview[];
+  description?: string;
+  reviews?: ProductReview[];
   preferredRecipe?:PrefferedRecipe;
+
 }
 
 export interface PrefferedRecipe {
@@ -26,4 +30,24 @@ export interface PrefferedRecipe {
   coffeeToWaterRatio: string;
   brewTime: string;
   instructions: string[];
+}
+
+export enum ProductType {
+  Coffee = "Coffee",
+  Acessories = "Acessories"
+}
+
+export interface ProductTypeInfo {
+  id: number;
+  name: string;
+  image: string;
+}
+
+export const productTypes: ProductTypeInfo[] = [
+  { id: 1, name: ProductType.Coffee, image: "/images/roasted-coffee-beans.jpg" },
+  { id: 2, name: ProductType.Acessories, image: "/images/coffee-accessories.jpg" },
+];
+
+export interface Brand{
+  name:string;
 }

@@ -15,7 +15,7 @@ import { getSupabaseEnv, getSupabaseWithSessionAndHeaders } from "./utils/supaba
 import { useSupabase } from "./utils/supabase";
 import { AppLayout } from "./components/layout/applayout";
 import { UserDetails } from "./types/user";
-import { getUserDataFromSession } from "./utils/getUserDataFromSession";
+import { getUserDataFromSession } from "./utils/utils";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

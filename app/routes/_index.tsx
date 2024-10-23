@@ -1,19 +1,54 @@
-import type { MetaFunction } from "@remix-run/node"
+import { json, type LoaderFunction, type MetaFunction } from "@remix-run/node"
 import { Button } from "components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "components/ui/card"
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "components/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "components/ui/tabs"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "components/ui/accordion"
-import { Users, Menu } from "lucide-react"
-import { PostCard } from "~/components/postcard"
 
+import { BlogPost } from "~/types/blogpost"
+import { PostsContent } from "~/components/blogposts/blogpostslist"
+import { useLoaderData } from "@remix-run/react"
+import { getSupabaseWithSessionAndHeaders } from "~/utils/supabase.server"
+import { getAllBlogPosts } from "~/utils/database.server"
+import { convertDatabasePostToBlogPost } from "~/utils/utils"
+
+interface LoaderData {
+  recentPosts: BlogPost[]
+  trendingPosts: BlogPost[]
+}
+
+export const loader: LoaderFunction = async ({request}) => {
+
+  const { supabase, headers } = await getSupabaseWithSessionAndHeaders({
+    request,
+  });
+  
+  const { data, error } = await getAllBlogPosts({
+    dbClient: supabase,
+  });
+  
+  const posts = data?.map(convertDatabasePostToBlogPost)
+
+
+  const recentPosts = [...(posts||[])].sort((a, b) => 
+    new Date(b.createdon).getTime() - new Date(a.createdon).getTime()
+  )
+  
+  const trendingPosts = [...(posts||[])].sort((a, b) => 
+    b.readCount - a.readCount
+  )
+
+
+  return json<LoaderData>({ recentPosts, trendingPosts }, 
+    { headers })
+}
 
 export const meta: MetaFunction = () => {
+
   return [
     { title: "Caffeine Collective" },
     { name: "description", content: "Home for Coffee Enthusisasts!" },
@@ -21,36 +56,15 @@ export const meta: MetaFunction = () => {
 }
 
 export default function Index() {
+  const { recentPosts, trendingPosts } = useLoaderData<LoaderData>()
+
   return (
       <div className="flex-1 flex flex-col lg:flex-row">
         {/* Main Content */}
         <main className="flex-1 p-6 max-w-3xl mx-auto">
-          <Tabs defaultValue="posts" className="w-full">
-            <TabsList>
-              <TabsTrigger value="posts">Latest Posts</TabsTrigger>
-              <TabsTrigger value="trending">Trending</TabsTrigger>
-            </TabsList>
-            <TabsContent value="posts" className="space-y-4">
-              <PostCard
-                title="The Art of Pour Over Coffee"
-                description="Learn the techniques to perfect your pour over coffee at home. We'll cover everything from choosing the right beans to mastering the pour technique."
-                badges={["Top", "Recent"]}
-              />
-              <PostCard
-                title="Exploring Single Origin Beans"
-                description="Discover the unique flavors of single origin coffee beans from around the world. From Ethiopian Yirgacheffe to Colombian Supremo, we'll take your taste buds on a global journey."
-                badges={["Recent"]}
-              />
-            </TabsContent>
-            <TabsContent value="trending" className="space-y-4">
-              <PostCard
-                title="Cold Brew vs. Iced Coffee"
-                description="Understand the differences and find your perfect summer coffee. We'll compare brewing methods, flavor profiles, and even share some recipes to try at home."
-                badges={["Trending"]}
-              />
-            </TabsContent>
-          </Tabs>
-        </main>
+        <PostsContent recentPosts={recentPosts } trendingPosts={trendingPosts} />
+      </main>
+
 
         {/* Right Sidebar */}
         <aside className="lg:w-80 p-6 space-y-6 border-l">

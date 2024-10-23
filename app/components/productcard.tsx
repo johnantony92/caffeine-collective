@@ -20,7 +20,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <Card className="hover:shadow-lg transition-shadow">
         <CardHeader>
           <img
-            src={product.imageUrl}
+            src={product.imageurl}
             alt={product.name}
             className="w-full h-48 object-cover rounded-t-lg"
           />
@@ -32,7 +32,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <Star
                 key={index}
                 className={`h-4 w-4 ${
-                  index < product.rating
+                  index < product.averagerating
                     ? "fill-yellow-400 text-yellow-400"
                     : "fill-gray-200 text-gray-200"
                 }`}
@@ -40,15 +40,15 @@ export function ProductCard({ product }: ProductCardProps) {
             ))}
           </div>
           <div className="flex flex-wrap gap-2">
-            {product.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag.replace('-', ' ')}
+            
+              <Badge  variant="secondary">
+                {product.profile}
               </Badge>
-            ))}
+            
           </div>
         </CardContent>
         <CardFooter>
-          <p className="font-bold text-lg">${product.price.toFixed(2)}</p>
+          <p className="font-bold text-lg">₹{product.price.toFixed(2)}</p>
         </CardFooter>
       </Card>
     </Link>

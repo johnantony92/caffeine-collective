@@ -8,7 +8,7 @@ import { getSupabaseWithSessionAndHeaders } from "~/utils/supabase.server";
 import { getAllLocations, getCafesForLocation } from "~/utils/database.server";
 import { Cafe } from "~/types/cafe";
 
-// Define the loader data type
+
 interface LoaderData {
   data: Cafe[];
 }
@@ -40,7 +40,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 };
 
 export default function CafeLocationPage() {
-  console.log("test");
   const { data: cafes } = useLoaderData<LoaderData>();
   const params = useParams();
 

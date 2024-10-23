@@ -1,10 +1,10 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, useLoaderData, useOutletContext } from "@remix-run/react";
 import { getSupabaseWithSessionAndHeaders } from "~/utils/supabase.server";
-import { getUserDataFromSession } from "~/utils/getUserDataFromSession";
 import { SupabaseOutletContext } from "~/utils/supabase";
 import { AppLayout } from "~/components/layout/applayout";
 import { UserDetails } from "~/types/user";
+import { getUserDataFromSession } from "~/utils/utils";
 
 export let loader = async ({ request }: LoaderFunctionArgs) => {
   const { headers, serverSession } = await getSupabaseWithSessionAndHeaders({

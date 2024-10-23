@@ -22,8 +22,11 @@ export const loader: LoaderFunction = async ({ params }) => {
   const product: Product = {
     id: params.productId!,
     name: "Premium Coffee Blend",
-    imageUrl: `/placeholder.svg?height=400&width=400`,
-    rating: 4,
+    imageurl: `/placeholder.svg?height=400&width=400`,
+    averagerating: 4,
+    profile:"",
+    brandid:1,
+    brandname:"",
     tags: ['beginner-friendly', 'medium-roast', 'blend'],
     price: 14.99,
     description: "A delightful coffee blend perfect for any time of day. This medium roast offers a balanced flavor profile with notes of chocolate and caramel, making it an excellent choice for both newcomers and coffee enthusiasts alike.",
