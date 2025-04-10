@@ -1,4 +1,16 @@
+import { Database } from "database.types";
+
 export type ProductTag = 'beginner-friendly' | 'seriously-black' | 'light-roast' | 'medium-roast' | 'dark-roast' | 'single-origin' | 'blend';
+export type CoffeeProfile = Database['dbo']['Tables']['coffeeprofile']['Row'];
+export type BrandSnippet = Pick<Database['dbo']['Tables']['brand']['Row'], 'name'>;
+export type ProductBase = Database['dbo']['Tables']['products']['Row'];
+export type BrewMethod = Database['dbo']['Tables']['preferredbrewmethod']['Row'];
+export type ProductRating = Database['dbo']['Tables']['productratings']['Row']; 
+
+export type ProductWithDetails = ProductBase & {
+  brand: BrandSnippet | null;
+  coffeeprofile: CoffeeProfile | null;
+};
 
 export interface ProductReview {
   id: string;
@@ -21,6 +33,7 @@ export interface Product {
   description?: string;
   reviews?: ProductReview[];
   preferredRecipe?:PrefferedRecipe;
+  productTypeId?:number;
 
 }
 
@@ -44,10 +57,20 @@ export interface ProductTypeInfo {
 }
 
 export const productTypes: ProductTypeInfo[] = [
-  { id: 1, name: ProductType.Coffee, image: "/images/roasted-coffee-beans.jpg" },
+  { id: 1, name: ProductType.Coffee, image: "/images/roasted-coffee-beans.jpeg" },
   { id: 2, name: ProductType.Acessories, image: "/images/coffee-accessories.jpg" },
 ];
 
 export interface Brand{
-  name:string;
+  id: number;
+  name: string;
 }
+
+export type ProductPageData = {
+  product: ProductBase & {
+    brand: BrandSnippet | null;
+    coffeeprofile: CoffeeProfile | null;
+  };
+  brewMethods: BrewMethod[];
+  ratings: ProductRating[];
+};

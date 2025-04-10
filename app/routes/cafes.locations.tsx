@@ -1,10 +1,21 @@
 import { Card, CardHeader, CardTitle } from "components/ui/card"
 import { Button } from "components/ui/button"
-import { json, Link, useLoaderData } from "@remix-run/react"
+import { json, Link, MetaFunction, useLoaderData } from "@remix-run/react"
 import { getSupabaseWithSessionAndHeaders } from "~/utils/supabase.server";
 import { LoaderFunction } from "@remix-run/node";
 import { getAllLocations } from "~/utils/database.server";
 import { CafeLocations } from "~/types/cafe";
+
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+
+  const title = "Cafe Locations"; 
+
+  return [
+    { title: title },
+    { name: "description", content: "Locations" }, 
+  ];
+};
 
 export const loader: LoaderFunction = async ({ request }) => {
   const { supabase, headers } = await getSupabaseWithSessionAndHeaders({

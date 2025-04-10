@@ -33,12 +33,20 @@ export const loader: LoaderFunction = async ({request}) => {
   
   const posts = data?.map(convertDatabasePostToBlogPost)
 
+  const postsWithDisplayDate = posts?.map(post => {
+    const d = new Date(post.createdon);
+    post.displayDate = `${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')}/${d.getFullYear()}`;
+  
+    return {
+      ...post};
+  });
 
-  const recentPosts = [...(posts||[])].sort((a, b) => 
+
+  const recentPosts = [...(postsWithDisplayDate||[])].sort((a, b) => 
     new Date(b.createdon).getTime() - new Date(a.createdon).getTime()
   )
-  
-  const trendingPosts = [...(posts||[])].sort((a, b) => 
+
+  const trendingPosts = [...(postsWithDisplayDate||[])].sort((a, b) => 
     b.readCount - a.readCount
   )
 

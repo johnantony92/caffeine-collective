@@ -1,5 +1,5 @@
 import { json, LoaderFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
+import { MetaFunction, useLoaderData } from "@remix-run/react"
 import { Card, CardHeader, CardTitle, CardContent } from "components/ui/card"
 import ReactMarkdown, { Components } from 'react-markdown'
 import { BlogPost } from "~/types/blogpost"
@@ -7,6 +7,15 @@ import { getBlogPostsDetails } from "~/utils/database.server"
 import { getSupabaseWithSessionAndHeaders } from "~/utils/supabase.server"
 import { convertDatabasePostToBlogPost } from "~/utils/utils"
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+
+  const title = "Blog Posts"; 
+
+  return [
+    { title: title },
+    { name: "description", content: "Blog Posts" }, 
+  ];
+};
 
 export const loader: LoaderFunction = async ({ request, params }) => {
     const { supabase, headers } = await getSupabaseWithSessionAndHeaders({

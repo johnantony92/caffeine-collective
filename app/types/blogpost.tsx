@@ -6,7 +6,8 @@ export interface BlogPost {
   createdon:string;
   createdbyusername:string;
   posttypeid:number;
-  readCount:number
+  readCount:number,
+  displayDate:string
 }
 
 export enum PostType {

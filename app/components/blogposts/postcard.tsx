@@ -31,7 +31,7 @@ export function PostCard({ title, author, createdAt, postId, postTypeId }: PostC
         </CardHeader>
         <CardFooter className="pt-0">
           <p className="text-xs text-muted-foreground">
-            By {author} | {new Date(createdAt).toLocaleDateString()}
+            By {author} | {createdAt}
           </p>
         </CardFooter>
       </Card>

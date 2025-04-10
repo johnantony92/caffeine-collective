@@ -22,7 +22,7 @@ export function PostsContent({ recentPosts, trendingPosts }: PostsContentProps) 
             key={post.id}
             title={post.header}
             author={post.createdbyusername}
-            createdAt={post.createdon.toLocaleString()}
+            createdAt={post.displayDate}
             postId={post.id}
             postTypeId={post.posttypeid}
           />
@@ -34,7 +34,7 @@ export function PostsContent({ recentPosts, trendingPosts }: PostsContentProps) 
             key={post.id}
             title={post.header}
             author={post.createdbyusername}
-            createdAt={post.createdon.toLocaleString()}
+            createdAt={post.displayDate}
             postId={post.id}
             postTypeId={post.posttypeid}
           />

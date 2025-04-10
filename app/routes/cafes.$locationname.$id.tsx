@@ -1,5 +1,5 @@
 import { json, LoaderFunction } from "@remix-run/node";
-import { useLoaderData, Link, useParams } from "@remix-run/react";
+import { useLoaderData, Link, useParams, MetaFunction } from "@remix-run/react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "components/ui/card"
 import { Badge } from "components/ui/badge"
 import { Button } from "components/ui/button"
@@ -12,6 +12,16 @@ import { Cafe } from "~/types/cafe";
 interface LoaderData {
   data: Cafe[];
 }
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+
+  const title = "Top Cafes In Each Locations"; 
+
+  return [
+    { title: title },
+    { name: "description", content: "Top Cafes" }, 
+  ];
+};
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const { supabase, headers } = await getSupabaseWithSessionAndHeaders({

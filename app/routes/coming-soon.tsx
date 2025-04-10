@@ -1,7 +1,19 @@
-import { useSearchParams } from "@remix-run/react"
+import { MetaFunction, useSearchParams } from "@remix-run/react"
 import { Button } from "components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "components/ui/card"
 import { ArrowLeft } from "lucide-react"
+import { loader } from "~/root";
+
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+
+  const title = "Coming Soon"; 
+
+  return [
+    { title: title },
+    { name: "description", content: "Coming Soon" }, 
+  ];
+};
 
 export default function ComingSoon() {
  
